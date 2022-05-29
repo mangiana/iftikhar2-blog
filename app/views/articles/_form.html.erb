@@ -1,12 +1,20 @@
 <div class="container">
+
   <% if @article.errors.any? %>
-    <h4>Following are the Erros preventing Article to save</h4>
-    <ul>
     <% @article.errors.full_messages.each do |msg|%>
-      <li><%=msg%></li>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+         <%=msg%>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <%end%>
-    </ul>
   <%end%>
+
+
+
+
+
+
+
   <div class="card mt-4">
     <div class="card-header text-center fw-bolder">
       <%= ne%> Article

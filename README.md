@@ -22,3 +22,15 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+
+ <% if< @article.errors.any? %>
+    h4>Following are the Erros preventing Article to save</h4>
+    <ul>
+    <% @article.errors.full_messages.each do |msg|%>
+      <li><%=msg%></li>
+    <%end%>
+    </ul>
+  <%end%>
