@@ -1,25 +1,42 @@
-<% if @article.errors.any? %>
-  <h4>Following are the Erros preventing Article to save</h4>
-  <ul>
-  <% @article.errors.full_messages.each do |msg|%>
-    <li><%=msg%></li>
+<div class="container">
+  <% if @article.errors.any? %>
+    <h4>Following are the Erros preventing Article to save</h4>
+    <ul>
+    <% @article.errors.full_messages.each do |msg|%>
+      <li><%=msg%></li>
+    <%end%>
+    </ul>
   <%end%>
-  </ul>
-<%end%>
-
-<%= form_with(model: @article, local: true ) do |f|%>
-  <div>
-    <%= f.label :title%><br>
-    <%= f.text_field :title%>
+  <div class="card mt-4">
+    <div class="card-header text-center fw-bolder">
+      <%= ne%> Article
+    </div>
+    <div class="card-body">
+      <%= form_with(model: @article, local: true ) do |f|%>
+      <%# <form> %>
+        <div class="mb-3">
+          <%= f.label :title, class:"form-label"%><br>
+          <%= f.text_field :title, class:"form-control"%>
+          <%# <label for="exampleInputEmail1" class="form-label">Title of Article</label> %>
+          <%# <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :body, class:"form-label"%><br>
+          <%# <label for="exampleInputPassword1" class="form-label">Description of Article</label> %>
+          <%= f.text_area :body, rows: 10, class:"form-control"%>
+          <%# <input type="password" class="form-control" id="exampleInputPassword1"> %>
+        </div>
+        
+        <div class="text-center">
+          <%= f.submit class:"btn btn-secondary text-center"%>
+          <%# <button type="submit" class="btn btn-primary text-center">Submit</button> %>
+        </div>
+      <%# </form> %>
+      <%end%>
+      <br>
+      <div class="text-center">
+        <%= link_to "Cancel",articles_path, class:"btn btn-secondary text-center", id:"cancel-button"%>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <%= f.label :body%><br>
-    <%= f.text_area :body%>
-  </div>
-
-  <div>
-    <%= f.submit%>
-  </div>
-
-<%end%>
+</div>
