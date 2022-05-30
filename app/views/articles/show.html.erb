@@ -4,7 +4,7 @@
           <div class= "col-8 mt-4">
             <div class="card  text-center shadow-lg  mb-5 bg-body rounded">
               <div class="card-header text-white bg-dark border-dark fst-italic">
-                by Iftikhar Ahmad
+                by <%= @article.user.username%>
               </div>
               <div class="card-body border-dark">
                 <div class="card-text text-start"> <%= simple_format(@article.body)%></div>
