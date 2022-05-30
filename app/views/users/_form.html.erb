@@ -1,0 +1,56 @@
+<div class="container">
+
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |msg|%>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+         <%=msg%>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <%end%>
+  <%end%>
+
+
+
+
+
+
+
+  <div class="card mt-4">
+    <div class="card-header text-center fw-bolder">
+      <%= ne%> Article
+    </div>
+    <div class="card-body">
+      <%= form_with(model: @user, local: true ) do |f|%>
+      <%# <form> %>
+        <div class="mb-3">
+          <%= f.label :username, class:"form-label"%><br>
+          <%= f.text_field :username, class:"form-control"%>
+          <%# <label for="exampleInputEmail1" class="form-label">Title of Article</label> %>
+          <%# <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :email, class:"form-label"%><br>
+          <%# <label for="exampleInputPassword1" class="form-label">Description of Article</label> %>
+          <%= f.email_field :email, class:"form-control"%>
+          <%# <input type="password" class="form-control" id="exampleInputPassword1"> %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, class:"form-label"%><br>
+          <%# <label for="exampleInputPassword1" class="form-label">Description of Article</label> %>
+          <%= f.password_field :password, class:"form-control"%>
+          <%# <input type="password" class="form-control" id="exampleInputPassword1"> %>
+        </div>
+        
+        <div class="text-center">
+          <%= f.submit class:"btn btn-secondary text-center"%>
+          <%# <button type="submit" class="btn btn-primary text-center">Submit</button> %>
+        </div>
+      <%# </form> %>
+      <%end%>
+      <br>
+      <div class="text-center">
+        <%= link_to "Cancel",articles_path, class:"btn btn-secondary text-center", id:"cancel-button"%>
+      </div>
+    </div>
+  </div>
+</div>
