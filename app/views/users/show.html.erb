@@ -1,7 +1,10 @@
 <div class="container text-center">
-  <h2><%= @user.username%></h2>
+  <h2>User Profile</h2>
+  <h5><%= @user.username%></h5> 
+  <h6><%= @user.email%></h6>
+  <%= link_to "Update User Profile", edit_user_path(@user), class: "btn btn-secondary"%>
   <% if @user.articles.any? == true%>
-  <h3>List of Articles created by <%= @user.username%></h3>
+  <h4>List of Articles created by <%= @user.username%></h4>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     
       <% @articles.each do |article|%>

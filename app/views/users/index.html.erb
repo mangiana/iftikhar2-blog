@@ -11,12 +11,7 @@
               </div>
               <div class="card-body border-dark">
                 <h5 class="card-title"><%= user.username%> has:</h5>
-                <p class="card-text"> 
-                <% if user.articles.count <= 1%>
-                  <%= user.articles.count%> Article
-                <% else%>
-                  <%= user.articles.count%> Articles
-                <% end%> </p>
+                <p class="card-text"><%= pluralize(user.articles.count, "Article")%></p>
                 <%= link_to "Show user Profile", user_path(user), class: "btn btn-info"%>
                 <%= link_to "Edit user Profile", edit_user_path(user), class: "btn btn-secondary"%>
                 <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
