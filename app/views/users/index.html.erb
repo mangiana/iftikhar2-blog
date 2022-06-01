@@ -1,0 +1,35 @@
+<div class="container text-center">
+  <h2>List of Iftikhar-Blog's Users</h2>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <% @users.each do |user|%>
+      <div class="col">
+        <div class="row justify-content-md-center">
+          <div class= "col-8 mt-4">
+            <div class="card  text-center shadow-lg  mb-5 bg-body rounded">
+              <div class="card-header text-white bg-dark border-dark fst-italic">
+                <%= user.username%>
+              </div>
+              <div class="card-body border-dark">
+                <h5 class="card-title"><%= user.username%> has:</h5>
+                <p class="card-text"> 
+                <% if user.articles.count <= 1%>
+                  <%= user.articles.count%> Article
+                <% else%>
+                  <%= user.articles.count%> Articles
+                <% end%> </p>
+                <%= link_to "Show user Profile", user_path(user), class: "btn btn-info"%>
+                <%= link_to "Edit user Profile", edit_user_path(user), class: "btn btn-secondary"%>
+                <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+              </div>
+              <div class="card-footer text-muted text-white bg-dark border-dark">
+                <small>Joined: <%= time_ago_in_words(user.created_at)%> ago</small><br>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>  
+    <%end%>
+  </div>
+  <p><%= link_to "Create New User",signup_path, class:"btn btn-secondary text-center"%></p>
+</div>
+
