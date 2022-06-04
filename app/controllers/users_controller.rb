@@ -20,8 +20,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-        flash[:notice] = "Welcome To Iftikhar Blog! #{@user.username} You have Successfully Signed Up"
-        redirect_to articles_path
+      # we have used here instance user method to automatically login the user
+      # after his signup
+      session[:user_id] = @user.id
+      flash[:notice] = "Welcome To Iftikhar Blog! #{@user.username} You have Successfully Signed Up"
+      redirect_to articles_path
     else
         render "new"
     end
