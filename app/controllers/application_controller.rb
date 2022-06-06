@@ -24,5 +24,12 @@ class ApplicationController < ActionController::Base
         # we have to turn user into boolean
         !!current_user
         # if it has a current user it wil return true else flase
+    end
+
+    def require_user
+      if !logged_in?
+        flash[:alert] = "You must Log In First"
+        redirect_to login_path
       end
+    end
 end
