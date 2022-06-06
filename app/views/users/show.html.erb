@@ -2,7 +2,9 @@
   <h2>User Profile</h2>
   <h5><%= @user.username%></h5> 
   <h6><%= @user.email%></h6>
-  <%= link_to "Update User Profile", edit_user_path(@user), class: "btn btn-secondary"%>
+  <% if logged_in? && @user == current_user%>
+    <%= link_to "Update User Profile", edit_user_path(@user), class: "btn btn-secondary"%>
+  <%end%>
   <%= render "articles/pagination", obj: @articles%> 
   <% if @user.articles.any? == true%>
   <h4>List of Articles created by <%= @user.username%></h4>
@@ -19,9 +21,11 @@
                     <h5 class="card-title"><%= article.title%></h5>
                     <p class="card-text"> <%= truncate(article.body, length:50)%></p>
                     <%= link_to "Show", article_path(article), class: "btn btn-info"%>
-                    <%= link_to "Edit", edit_article_path(article), class: "btn btn-secondary"%>
-                    <%= link_to "Delete", article_path(article), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure"}%>
-                    <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+                    <% if logged_in? && article.user == current_user%>
+                      <%= link_to "Edit", edit_article_path(article), class: "btn btn-secondary"%>
+                      <%= link_to "Delete", article_path(article), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure"}%>
+                      <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+                    <%end%>
                 </div>
                 <div class="card-footer text-muted text-white bg-dark border-dark">
                     <small>Created at: <%= time_ago_in_words(article.created_at)%> ago</small><br>
@@ -37,6 +41,8 @@
     <%= "No Articles Found"%>
   <% end%>
   <%= render "articles/pagination", obj: @articles%>
-  <p><%= link_to "Create New Article",new_article_path, class:"btn btn-secondary text-center"%></p>
+  <%if logged_in? && @user == current_user%>
+    <p><%= link_to "Create New Article",new_article_path, class:"btn btn-secondary text-center"%></p>
+  <%end%>
 </div>
 
