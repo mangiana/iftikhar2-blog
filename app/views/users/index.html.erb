@@ -13,10 +13,16 @@
               <div class="card-body border-dark">
                 <h5 class="card-title"><%= user.username%> has:</h5>
                 <p class="card-text"><%= pluralize(user.articles.count, "Article")%></p>
-                <%= link_to "Show user Profile", user_path(user), class: "btn btn-info"%>
-                <% if logged_in? && user == current_user%>
-                  <%= link_to "Edit user Profile", edit_user_path(user), class: "btn btn-secondary"%>
+                <%= link_to "Show Profile", user_path(user), class: "btn btn-info"%>
+                <% if logged_in?%>
+                  <% if user == current_user%>
+                  <%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-secondary"%>
                   <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+                  <%end%>
+                  <% if current_user.admin?%>
+                    <%= link_to "Delete user", user_path(user), class: "btn btn-secondary mt-1", method: :delete, 
+                                data:{confirm: "Are you Sure to Delete This User"}%>
+                  <%end%>
                 <%end%>
               </div>
               <div class="card-footer text-muted text-white bg-dark border-dark">

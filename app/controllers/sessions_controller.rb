@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+   before_action :check_login, only:[:new, :create]
+  
+  
+  
   def new
   end
 
@@ -21,4 +25,13 @@ class SessionsController < ApplicationController
     flash[:notice] = "Successfully logged Out"
     redirect_to root_path
   end
+
+  private
+    
+    def check_login
+      if logged_in?
+        flash[:alert] = "You cannot login again, Must logout First"
+        redirect_to root_path
+      end
+    end
 end
